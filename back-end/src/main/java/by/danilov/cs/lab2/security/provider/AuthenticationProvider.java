@@ -3,7 +3,7 @@ package by.danilov.cs.lab2.security.provider;
 import by.danilov.cs.lab2.domain.User;
 import by.danilov.cs.lab2.exception.UserNotExistException;
 import by.danilov.cs.lab2.repository.UserRepository;
-import by.danilov.cs.lab2.security.details.UserDetails;
+import by.danilov.cs.lab2.security.details.UserDetailsImpl;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class AuthenticationProvider {
         this.repository = repository;
     }
 
-    public boolean authorize(UserDetails userDetails) {
+    public boolean authorize(UserDetailsImpl userDetails) {
 
         try {
             User user = repository.getByLogin(userDetails.getLogin());

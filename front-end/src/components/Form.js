@@ -15,8 +15,7 @@ const Form = (props) => (
             type="password"
             name="password"
             placeholder="Password" />
-
-
+        
 
         <div className="container">
             <div className="row">

@@ -20,10 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
-
         http
                 .authorizeRequests()
                 .anyRequest()
@@ -37,8 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT","OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList(
+                "credentials", "X-Requested-With",
+                "Origin", "Content-Type",
+                "Accept", "Authorization",
+                "SESSION_ID", "REQUEST_ID"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

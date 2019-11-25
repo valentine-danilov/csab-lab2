@@ -43,18 +43,10 @@ public class RSATokenService {
         return generatedToken;
     }
 
-    public Token getEncryptedToken(String publicKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-
-        Token token = generateSessionToken();
-
-        System.out.println("Token: " + token.getToken());
-        System.out.println("IV: " + token.getIv());
+    public Token getEncryptedToken(String publicKey, Token token) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
 
         byte[] tokenBytes = token.getToken().getBytes(StandardCharsets.UTF_8);
         byte[] ivBytes = token.getIv().getBytes(StandardCharsets.UTF_8);
-
-        System.out.println("Token bytes: " + Arrays.toString(tokenBytes));
-        System.out.println("IV bytes: " + Arrays.toString(ivBytes));
 
         Key key = getPublicKey(publicKey);
         Cipher cipher = Cipher.getInstance("RSA");

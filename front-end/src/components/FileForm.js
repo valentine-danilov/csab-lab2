@@ -20,6 +20,12 @@ export default class FileForm extends React.Component {
                         type="submit">
                         Load text
                     </button>
+                    <button
+                        onClick={() => this.props.onUpload(file.fileName, file.content)}
+                        className="btn btn-info custom-button"
+                        type="submit">
+                        Upload text
+                    </button>
                 </div>
 
                 <div className="row">
@@ -29,6 +35,8 @@ export default class FileForm extends React.Component {
                             <h2>Text</h2>
                             <textarea
                                 rows="20"
+                                name="content"
+                                onBlur={(event) => this.props.onBlur(event)}
                                 className="form-control custom-textarea"
                                 defaultValue={file.content ? file.content : ""}>
                             </textarea>
